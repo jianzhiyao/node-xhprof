@@ -61,7 +61,7 @@ FileAdapter.prototype.getRun = function (runId, cb) {
         }
 
         // return the run info
-        callback(null, {content: JSON.parse(data.toString()), row: null, description: description, runId: runId});
+        callback(null, {content: rawData, row: null, description: description, runId: runId});
       });
     });
   });
