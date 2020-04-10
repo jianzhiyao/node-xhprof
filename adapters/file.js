@@ -34,8 +34,10 @@ module.exports = new FileAdapter();
 
 FileAdapter.prototype.getRun = function (runId, cb) {
   var opts = _.merge(this.defaults, options.adapter.options);
-  var file = opts.rootDir.trim().replace(/\/+$/, '') + '/' + runId + '.' + opts.type.trim().replace(/^\.+/, '');
-  var callback = (_.isFunction(cb) ? cb : function () {});
+  var type = opts.type.trim().replace(/^\.+/, '');
+  var file = opts.rootDir.trim().replace(/\/+$/, '') + '/' + runId + '.' + type;
+  var callback = (_.isFunction(cb) ? cb : function () {
+  });
 
   fs.exists(file, function (exists) {
     if (!exists) {
@@ -51,7 +53,7 @@ FileAdapter.prototype.getRun = function (runId, cb) {
 
       var description = 'XHProf Run: ' + runId;
 
-      unserialize.unserialize(data, function (err, rawData) {
+      unserialize.parse(data.toString(), type, function (err, rawData) {
         if (err) {
           // unserialize failed
           callback(err);
@@ -59,7 +61,7 @@ FileAdapter.prototype.getRun = function (runId, cb) {
         }
 
         // return the run info
-        callback(null, {content: rawData, row: null, description: description, runId: runId});
+        callback(null, {content: JSON.parse(data.toString()), row: null, description: description, runId: runId});
       });
     });
   });
