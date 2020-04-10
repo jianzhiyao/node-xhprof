@@ -10,7 +10,7 @@ Writing of XHProf data is not supported.
 ### Dependencies
 ------
 
-node-xhprof requires that [graphviz](http://www.graphviz.org/) be installed on your system (specifically the `dot` command)
+if you need to genarate image,node-xhprof requires that [graphviz](http://www.graphviz.org/) be installed on your system (specifically the `dot` command)
 
 **RHEL/Centos/etc:**
 
@@ -32,6 +32,39 @@ npm install xhprof
 ```
 
 ### Usage
+
+#### Generate Dot Script
+```
+var fs = require('fs');
+var xhprof = new (require('xhprof'))({
+    adapter: {
+        type: 'file',
+        options: {
+            rootDir: __dirname,
+            //file extension name
+            type: 'json',
+        }
+    }
+});
+
+var runId = '53235ace524be';
+var type = 'jpg';
+var threshold = 0.01;
+var func = null;
+var source = null;
+var criticalPath = true;
+
+xhprof.callgraph.renderDotScript(runId, type, threshold, func, source, criticalPath, function (err, dotScript) {
+    if (err) {
+        console.log(err.track || err);
+        process.exit();
+    }
+
+    console.log(dotScript);
+});
+```
+
+#### Generate Image
 ------
 
 Basic generation of a report from XHProf data saved in a file:
