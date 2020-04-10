@@ -11,15 +11,15 @@
     "php",
     "profile"
   ],
-  "homepage": "https://github.com/sazze/node-xhprof",
+  "homepage": "https://github.com/jianzhiyao/node-xhprof",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sazze/node-xhprof.git"
+    "url": "https://github.com/jianzhiyao/node-xhprof.git"
   },
   "bugs": {
-    "url": "https://github.com/sazze/node-xhprof/issues"
+    "url": "https://github.com/jianzhiyao/node-xhprof/issues"
   },
-  "author": "Craig Thayer <cthayer@sazze.com>",
+  "author": "Anker Jam <jianzhiyao020@qq.com>",
   "license": "Apache-2.0",
   "dependencies": {
     "async": "^0.2.10",
