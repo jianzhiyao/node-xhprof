@@ -48,13 +48,12 @@ var xhprof = new (require('xhprof'))({
 });
 
 var runId = '53235ace524be';
-var type = 'jpg';
 var threshold = 0.01;
 var func = null;
 var source = null;
 var criticalPath = true;
 
-xhprof.callgraph.renderDotScript(runId, type, threshold, func, source, criticalPath, function (err, dotScript) {
+xhprof.callgraph.renderDotScript(runId, threshold, func, source, criticalPath, function (err, dotScript) {
     if (err) {
         console.log(err.track || err);
         process.exit();
